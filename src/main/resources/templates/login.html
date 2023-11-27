@@ -6,15 +6,15 @@
 <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-	<header>
-		<h1>サンプルショッピング</h1>
-	</header>
+	<!-- ヘッダ領域の表示 -->
+	<th:block th:replace="~{parts/header}"></th:block>
 	<main>
 		<article>
 			<form action="/login" method="post">
 				<input type="text" name="name" placeholder="名前" />
 				<button>ログイン</button>
 			</form>
+			<p><a href="/account">新規会員登録はこちら</a></p>
 		</article>
 	</main>
 </body>
