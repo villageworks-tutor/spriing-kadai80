@@ -1,0 +1,28 @@
+<!-- カートに商品が入っていない場合はカート内商品一覧は非表示 -->
+<table th:if="${@cart.itemList.size() > 0}">
+	<tr>
+		<th>NO</th>
+		<th>商品名</th>
+		<th>値段</th>
+		<th>個数</th>
+		<th>小計</th>
+		<th></th>
+	</tr>
+	<tr th:each="item:${@cart.itemList}">
+		<td>[[${item.id}]]</td>
+		<td>[[${item.name}]]</td>
+		<td>[[${item.price}]]</td>
+		<td>[[${item.quantity}]]</td>
+		<td>[[${item.price * item.quantity}]]</td>
+		<td>
+			<form action="/cart/delete" method="post">
+				<input type="hidden" name="itemId" th:value="${item.id}" />
+				<button>削除</button>
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align: right;" colspan="5" th:text="'総計：' + ${@cart.totalPrice}"></td>
+		<td></td>
+	</tr>
+</table>
