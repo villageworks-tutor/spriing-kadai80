@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +21,11 @@ public class AccountController {
 	
 	// ログイン画面表示およびログアウト処理
 	@GetMapping({"/", "/login", "/logout"})
-	public String index() {
+	public String index(Model model) {
 		// セッションスコープを破棄
 		session.invalidate();
+		// スコープにヘッダの表示モードを登録
+		model.addAttribute("isAccount", true);
 		// 画面遷移
 		return "login";
 	}
@@ -35,4 +38,14 @@ public class AccountController {
 		// 画面遷移
 		return "redirect:/items";
 	}
+	
+	// 会員登録画面表示
+	@GetMapping("/account")
+	public String create(Model model) {
+		// スコープにヘッダの表示モードを登録
+		model.addAttribute("isAccount", true);
+		// 画面遷移
+		return "accountForm";
+	}
+	
 }

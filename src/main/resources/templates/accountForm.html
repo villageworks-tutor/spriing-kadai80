@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CustomerInfo</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<!-- ヘッダ領域の表示 -->
+	<th:block th:replace="~{parts/header}"></th:block>
+	<hr />
+	<h2>お客様情報</h2>
+	<form action="" method="">
+	<table>
+		<tr>
+			<th>お名前</th>
+			<td><input type="text" name="name" /></td>
+		</tr>
+		<tr>
+			<th>住所</th>
+			<td><input type="text" name="address" /></td>
+		</tr>
+		<tr>
+			<th>電話番号</th>
+			<td><input type="text" name="tel" /></td>
+		</tr>
+		<tr>
+			<th>email</th>
+			<td><input type="text" name="email" /></td>
+		</tr>
+		<tr>
+			<th>パスワード</th>
+			<td><input type="text" name="password" /></td>
+		</tr>
+	</table>
+	<button>登録</button>
+	</form>
+	<hr />
+	<!-- フッタ領域の表示 -->
+	<th:block th:replace="~{parts/footer}"></th:block>
+	
+</body>
+</html>

@@ -1,4 +1,11 @@
 	<header>
+		<!-- 会員登録画面表示用 -->
+		<th:block th:if="${isAccount}">
+		<h1>サンプルショッピング</h1>
+		</th:block>
+		<!-- 会員登録以外の画面表示用 -->
+		<th:block th:unless="${isAccount}">
 		<h1><a href="/items">サンプルショッピング</a></h1>
 		<p>[[${@account.name}]]さんがログイン中 <a href="/logout">ログアウト</a></p>
+		</th:block>
 	</header>
