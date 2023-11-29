@@ -26,6 +26,16 @@ public class Customer {
 
 	/**
 	 * コンストラクタ
+	 * @param email
+	 * @param password
+	 */
+	public Customer(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
+	/**
+	 * コンストラクタ
 	 * @param name
 	 * @param address
 	 * @param tel

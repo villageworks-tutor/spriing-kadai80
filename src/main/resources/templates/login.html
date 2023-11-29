@@ -10,9 +10,10 @@
 	<th:block th:replace="~{parts/header}"></th:block>
 	<main>
 		<article>
+			<p class="error" th:if="${error ne ''}">[[${error}]]</p>
 			<form action="/login" method="post">
-				<input type="text" name="name" placeholder="メールアドレス" /><br />
-				<input type="text" name="name" placeholder="パスワード" /><br />
+				<input type="text" name="email" placeholder="メールアドレス" /><br />
+				<input type="text" name="password" placeholder="パスワード" /><br />
 				<button>ログイン</button>
 			</form>
 			<p><a href="/account">新規会員登録はこちら</a></p>
