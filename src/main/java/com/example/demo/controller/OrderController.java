@@ -15,6 +15,7 @@ import com.example.demo.entity.Customer;
 import com.example.demo.entity.Item;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderDetail;
+import com.example.demo.model.Account;
 import com.example.demo.model.Cart;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.OrderDetailrepository;
@@ -31,9 +32,24 @@ public class OrderController {
 	OrderRepository orderRepository;
 	@Autowired
 	OrderDetailrepository orderDetailRepository;
+	@Autowired
+	Account account;
 	
 	// 顧客情報入力画面表示
 	@GetMapping("/order")
+	public String index(Model model) {
+		// セッションスコープに登録されているアカウント情報からの顧客IDを取得
+		Integer id = account.getId();
+		// 取得した顧客IDから顧客インスタンスを取得
+		Customer customer = customerRepository.findById(id).get();
+		// スコープに取得した顧客インスタンスを登録
+		model.addAttribute("customer", customer);
+		// 画面遷移
+		return "customerForm";
+	}
+	
+	// 顧客情報入力画面表示
+	@GetMapping("/orders")
 	public String index() {
 		return "customerForm";
 	}
