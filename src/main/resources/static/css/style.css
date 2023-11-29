@@ -60,3 +60,9 @@ button {
 button:hover {
 	background-color: #F1B2B2;
 }
+/* エラーメッセージ */
+ul.error {
+	color: tomato;
+	list-style: none;
+	padding-left: 0;
+}
