@@ -39,6 +39,29 @@ public class AccountController {
 	
 	// ログイン処理
 	@PostMapping("/login")
+	public String login(
+			@RequestParam("email") String email,
+			@RequestParam("password") String password,
+			Model model) {
+		// リクエストパラメータに一致する顧客インスタンスを取得
+		Customer customer = customerRepository.findByEmailAndPassword(email, password);
+		// 取得した顧客インスタンスによって処理を分岐
+		if (customer == null) {
+			// メールアドレスとパスワードが一致していない場合
+			model.addAttribute("error", "メールアドレスとパスワードが一致しませんでした");
+			// スコープにヘッダの表示モードを登録
+			model.addAttribute("isAccount", true);
+			return "login";
+		}
+		// メールアドレスとパスワードが一致している場合：セッションスコープに登録されているアカウント情報にIDと名前を設定
+		account.setId(customer.getId());
+		account.setName(customer.getName());
+		// 遷移先URLの設定
+		return "redirect:/items";
+	}
+	
+	// ログイン処理（URLを変更して仮保存）
+	@PostMapping("/logins")
 	public String login(@RequestParam("name") String name) {
 		// セッションスコープに登録されているアカウント情報にリクエストパラメータを設定
 		account.setName(name);
@@ -107,7 +130,7 @@ public class AccountController {
 			// return "accountForm";
 		} else {
 			// データベースに登録
-			customerRepository.save(new Customer(name, address, tel, email));
+			customerRepository.save(new Customer(name, address, tel, email, password));
 			// 遷移先画面の設定
 			nextPage = "redirect:/login";
 		}
